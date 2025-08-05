@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aivana – Your Life Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fdf6f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #5e3c2d;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #chat {
+      width: 100%;
+      max-width: 600px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border-radius: 10px;
+      line-height: 1.4;
+    }
+    .user {
+      background-color: #e0f7fa;
+      align-self: flex-end;
+    }
+    .ai {
+      background-color: #f1f8e9;
+      align-self: flex-start;
+    }
+    form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      background-color: #80563d;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.875rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aivana</h1>
+    <p>Your Intelligent Life Companion</p>
+  </header>
+  <main>
+    <div id="chat"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Type your message..." required />
+      <button type="submit">Send</button>
+    </form>
+  </main>
+  <footer>&copy; 2025 Aivana. All rights reserved.</footer>  <script>
+    const chat = document.getElementById('chat');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+
+    function addMessage(content, role) {
+      const msg = document.createElement('div');
+      msg.className = `message ${role}`;
+      msg.textContent = content;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const userMsg = input.value;
+      addMessage(userMsg, 'user');
+      input.value = '';
+
+      addMessage('Aivana is thinking...', 'ai');
+
+      // Simulated response (replace this with real API call)
+      setTimeout(() => {
+        const aiResponse = `You said: "${userMsg}". I'm here to help you feel better and grow today.`;
+        const aiMsg = chat.querySelector('.ai:last-child');
+        aiMsg.textContent = aiResponse;
+      }, 1000);
+    });
+  </script></body>
+</html>
